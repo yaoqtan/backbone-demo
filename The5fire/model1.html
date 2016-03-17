@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Backbonejs</title>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+ 
+<style>
+ul,li{
+  list-style: none;
+}
+
+</style>
+</head>
+<body>
+<div id = "box"></div>
+ <script type="text/javascript">
+(function($){
+  //最简单对象
+ /* var Man = Backbone.Model.extend({
+    initialize:function(){
+      alert('Hey,you create me');
+    },
+   
+  });
+  var man = new Man;*/
+
+   //对象属性赋值1——直接定义。
+/*  var Man = Backbone.Model.extend({
+    initialize:function(){
+      alert('Hey,you create me');
+    },
+    defaults:{
+      name:"张三",
+      age:"38"
+    }
+  });
+  var man = new Man;
+  alert(man.get('school'))*/
+
+  //赋值时定义
+/*  var Man = Backbone.Model.extend({
+    initialize:function(){
+      alert('Hey,you create me');
+    }
+  });
+  var man = new Man;
+  man.set({
+    name:"the5fire",
+    age:"10"
+  });
+  alert(man.get('name'))*/
+
+  //对象中的方法
+  var Man = Backbone.Model.extend({
+    initialize:function(){
+      alert('Hey,you create me');
+    },
+    defaults:{
+      name:"张三",
+      age:"38"
+    },
+    aboutMe:function(){
+      return '我叫'+this.get('name')+'今年'+this.get('age')+"岁";
+    }
+
+  });
+    var man = new Man;
+    alert(man.aboutMe())
+
+})(jQuery)
+ 
+ </script>
+</body>
+</html>
