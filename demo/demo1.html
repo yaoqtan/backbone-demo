@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+<script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
+ 
+<link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<style>
+	.mao{
+		position: absolute;
+		top:0;
+		right: 0;
+		bottom:0;
+		left:0;
+		margin:auto;
+		background: rgba(0,0,0,.7);
+
+	}
+</style>
+</head>
+<body>
+ <div class = "mao"></div>
+  <table id="js-id-gists" class="table">
+    <thead><th>description</th><th>URL</th><th>created_at</th></thead>
+    <tbody></tbody>
+  </table>
+  <script type="text/javascript">
+  $(function(){
+  	$(".mao").hide();
+  })
+  </script>
+  <script type="text/javascript">
+
+  	var Gist  = Backbone.Model.extend({
+  		url:'http://127.0.0.1/Link/LINK_Exe_2/json/areaNDistrictNShopCentre.json',
+  		parse:function(response){
+  			return (response[0]);
+  		}
+  	});
+  	gist = new Gist();
+  	gist.on("change",function(model){
+  		var tbody = document.getElementById("js-id-gists").children[1];
+  		tr = document.getElementById(model.get('id'));
+  		if(!tr){
+  			tr = document.createElement('tr');
+  			tr.setAttribute('id',model.get('id'));
+  		}
+  		tr.innerHTML = '<td>'+model.get('nameSc')+'</td><td>'+model.get('districts.nameSc')+'</td><td>'+model.get('created_at')+'</td><td>'+model.get('html_url')+'</td>';
+  		tbody.appendChild(tr);
+  	});
+  	gist.fetch();
+  </script>
+</body>
+</html>
