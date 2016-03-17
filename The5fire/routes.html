@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Backbonejs</title>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+ 
+<style>
+ul,li{
+  list-style: none;
+}
+
+</style>
+</head>
+<body>
+<a href = "#actions">demoRouter</a>
+<a href = "#/posts/120">Post 120</a>
+  <script type="text/javascript">
+  //简单例子
+/*  var AppRouter = Backbone.Router.extend({
+    routes:{
+      "*actions":"defaultRoute"
+    },
+    defaultRoute:function(actions){
+      alert(actions);
+    }
+  });
+  var app_router = new AppRouter;
+  Backbone.history.start();
+*/
+  //routes映射参数
+  var AppRouter = Backbone.Router.extend({
+    routes:{
+      "posts/:id":"getPost",
+      "*actions":"defaultRoute"
+    },
+    getPost:function(id){
+      alert(id)
+    },
+    defaultRoute:function(actions){
+      alert(actions);
+    }
+  });
+  var app_router = new AppRouter;
+  Backbone.history.start();
+
+  </script>
+</body>
+</html>

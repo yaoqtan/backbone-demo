@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title>Backbonejs</title>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+<script type="text/javascript" src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+ 
+<style>
+ul,li{
+  list-style: none;
+}
+
+</style>
+</head>
+<body>
+<div id = "box"></div>
+  <script type="text/javascript">
+    var Book = Backbone.Model.extend({
+      defaults:{
+        title:'default'
+      },
+      initialize:function(){
+        //alert("Hey,you create me");
+      },
+    });
+    BookShelf = Backbone.Collection.extend({
+      model:Book
+    });
+    var book1 = new Book({title:'bbook1'});
+    var book2 = new Book({title:'bbook2'});
+    var book3 = new Book({title:'bbook3'});
+
+    var bookshelf = new BookShelf;
+    bookshelf.add(book1);
+    bookshelf.add(book2);
+    bookshelf.add(book3);
+    bookshelf.remove(book3);
+
+/*    bookshelf.each(function(book){
+
+      alert(book.get('title'));
+    })*/
+    bookshelf.url = "http://127.0.0.1/Link/LINK_Exe_2/json/areaNDistrictNShopCentre.json",
+    bookshelf.fetch({
+      success:function(collection,response,options){
+        collection.each(function(book){
+          alert(book.get('title'));
+        })
+      },
+      error:function(collection,response,options){
+        alert('error');
+      }
+      
+    });
+   
+  </script>
+</body>
+</html>
