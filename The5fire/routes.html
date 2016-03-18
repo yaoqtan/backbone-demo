@@ -18,6 +18,8 @@ ul,li{
 <body>
 <a href = "#actions">demoRouter</a>
 <a href = "#/posts/120">Post 120</a>
+<a href = "#/download/user/images/hey.gif">download</a>
+<a href = "#/dashboard/graph">Action View</a>
   <script type="text/javascript">
   //简单例子
 /*  var AppRouter = Backbone.Router.extend({
@@ -32,21 +34,55 @@ ul,li{
   Backbone.history.start();
 */
   //routes映射参数
+  /*var AppRouter = Backbone.Router.extend({
+    routes:{
+      "posts/:id":"getPost",
+      "download/user/*path":"downloadFile",
+      ":route/:action":"loadView",
+      "*actions":"defaultRoute"
+
+    },
+    getPost:function(id){
+     console.log(id)
+    },
+    defaultRoute:function(actions){
+      console.log(actions)
+    },
+    downloadFile:function(path){
+      console.log(path)
+    },
+    loadView:function(route,action){
+      console.log(route+"_"+action)
+    }
+  });
+  var app_router = new AppRouter;
+  Backbone.history.start();*/
+
+  //手动触发router
   var AppRouter = Backbone.Router.extend({
     routes:{
       "posts/:id":"getPost",
+      "download/user/*path":"downloadFile",
+      ":route/:action":"loadView",
+      "manual":"manual",
       "*actions":"defaultRoute"
+
     },
     getPost:function(id){
-      alert(id)
+     console.log(id)
     },
     defaultRoute:function(actions){
-      alert(actions);
+      console.log(actions)
+    },
+    downloadFile:function(path){
+      console.log(path)
+    },
+    loadView:function(route,action){
+      console.log(route+"_"+action)
     }
   });
   var app_router = new AppRouter;
   Backbone.history.start();
-
   </script>
 </body>
 </html>
